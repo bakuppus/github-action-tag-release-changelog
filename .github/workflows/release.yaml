@@ -6,7 +6,7 @@ jobs:
   versioning:
     runs-on: ubuntu-latest
     outputs:
-      new_version: ${{ steps.version.outputs.new_version }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -52,7 +52,7 @@ jobs:
         uses: mikepenz/release-changelog-builder-action@v1
         with:
           configuration: ".github/workflows/configuration.json"
-          toTag: ${{ needs.versioning.outputs.new_version }}
+          toTag: ${{ needs.versioning.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -60,8 +60,8 @@ jobs:
         uses: actions/create-release@v1
         with:
           prerelease: true
-          tag_name: ${{ needs.versioning.outputs.new_version }}
-          release_name: ${{ needs.versioning.outputs.new_version }}
+          tag_name: ${{ needs.versioning.outputs.version }}
+          release_name: ${{ needs.versioning.outputs.version }}
           body: ${{steps.github_release.outputs.changelog}}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
