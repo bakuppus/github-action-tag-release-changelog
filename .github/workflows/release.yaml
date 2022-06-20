@@ -1,8 +1,6 @@
 name: 'release'
 on:
   push:
-    tags:
-      - 'v*'
     branches: [ main ]
 jobs:
   versioning:
@@ -48,6 +46,7 @@ jobs:
         name: Check out code
         with:
           fetch-depth: 0
+
       - name: Build Changelog
         id: github_release
         uses: mikepenz/release-changelog-builder-action@v1
@@ -56,6 +55,7 @@ jobs:
           toTag: ${{ needs.versioning.outputs.version }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Create Release
         uses: actions/create-release@v1
         with:
