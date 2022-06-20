@@ -60,7 +60,7 @@ jobs:
         uses: actions/create-release@v1
         with:
           prerelease: true
-          tag_name: ${{ needs.versioning.outputs.version }}
+          tag_name: ${{ needs.versioning.outputs.new_version }}
           release_name: ${{ needs.versioning.outputs.new_version }}
           body: ${{steps.github_release.outputs.changelog}}
         env:
