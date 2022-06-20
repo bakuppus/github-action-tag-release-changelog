@@ -1,46 +1,30 @@
 {
+  "pr_template": "- ${{TITLE}} (#${{NUMBER}})",
   "categories": [
     {
       "title": "## 🚀 Features",
-      "labels": ["feature"]
+      "labels": ["enhancement", "feature"]
+    },
+    {
+      "title": "## 🛠️ Minor Changes",
+      "labels": ["change"]
+    },
+    {
+      "title": "## 🔎 Breaking Changes",
+      "labels": ["breaking"]
     },
     {
       "title": "## 🐛 Fixes",
-      "labels": ["fix"]
+      "labels": ["bug", "fix"]
     },
     {
-      "title": "## 🧪 Tests",
-      "labels": ["test"]
-    }
-  ],
-  "ignore_labels": [
-    "ignore"
-  ],
-  "sort": "ASC",
-  "template": "${{CHANGELOG}}\n\n<details>\n<summary>Uncategorized</summary>\n\n${{UNCATEGORIZED}}\n</details>",
-  "pr_template": "- ${{TITLE}}\n   - PR: #${{NUMBER}}",
-  "empty_template": "- no changes",
-  "label_extractor": [
-    {
-      "pattern": "(.) (.+)",
-      "target": "$1"
+      "title": "## 📄 Documentation",
+      "labels": ["documentation"]
     },
     {
-      "pattern": "(.) (.+)",
-      "target": "$1",
-      "on_property": "title"
+      "title": "## 🔗 Dependency Updates",
+      "labels": ["dependency"]
     }
   ],
-  "transformers": [
-    {
-      "pattern": "[\\-\\*] (\\[(...|TEST|CI|SKIP)\\])( )?(.+?)\n(.+?[\\-\\*] )(.+)",
-      "target": "- $4\n  - $6"
-    }
-  ],
-  "max_tags_to_fetch": 200,
-  "max_pull_requests": 200,
-  "max_back_track_time_days": 365,
-  "tag_resolver": {
-    "method": "semver"
-  }
+  "template": "${{CATEGORIZED_COUNT}} changes since ${{FROM_TAG}}\n\n${{CHANGELOG}}"
 }
